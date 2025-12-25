@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Exquisite Flower Bouquet</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at bottom, #0b1320, #000);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .bouquet {
+        position: relative;
+        width: 420px;
+        height: 420px;
+        animation: sway 6s ease-in-out infinite;
+        transform-origin: bottom center;
+    }
+
+    @keyframes sway {
+        0%, 100% { transform: rotate(-1deg); }
+        50% { transform: rotate(1deg); }
+    }
+
+    .flower {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        opacity: 0;
+        transform: scale(0);
+        animation: bloom 1.2s ease-out forwards;
+        filter: drop-shadow(0 0 8px currentColor);
+    }
+
+    @keyframes bloom {
+        0% { transform: scale(0.2); opacity: 0; }
+        60% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    .petal {
+        position: absolute;
+        width: 18px;
+        height: 28px;
+        background: currentColor;
+        border-radius: 50%;
+        transform-origin: bottom center;
+    }
+
+    .center {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        background: gold;
+        border-radius: 50%;
+        top: 18px;
+        left: 18px;
+        box-shadow: 0 0 12px gold;
+    }
+
+    .stem {
+        position: absolute;
+        width: 4px;
+        height: 90px;
+        background: linear-gradient(#2d6a4f, #1b4332);
+        left: 23px;
+        top: 45px;
+        border-radius: 2px;
+    }
+
+    .leaf {
+        position: absolute;
+        width: 20px;
+        height: 12px;
+        background: #52b788;
+        border-radius: 50%;
+        top: 60px;
+        left: -8px;
+        transform: rotate(-25deg);
+    }
+
+    .leaf.right {
+        left: 20px;
+        transform: rotate(25deg);
+    }
+
+    .sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0;
+        animation: sparkle 3s infinite;
+        box-shadow: 0 0 6px white;
+    }
+
+    @keyframes sparkle {
+        0% { opacity: 0; transform: translateY(0); }
+        50% { opacity: 1; }
+        100% { opacity: 0; transform: translateY(-20px); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="bouquet" id="bouquet"></div>
+
+<script>
+const bouquet = document.getElementById("bouquet");
+
+const colors = [
+    "#ff4d6d", "#f72585", "#b5179e",
+    "#ffd166", "#80ed99", "#4cc9f0"
+];
+
+function createFlower(x, y, delay, color) {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.style.left = x + "px";
+    flower.style.top = y + "px";
+    flower.style.color = color;
+    flower.style.animationDelay = delay + "s";
+
+    const stem = document.createElement("div");
+    stem.className = "stem";
+    flower.appendChild(stem);
+
+    const leafL = document.createElement("div");
+    leafL.className = "leaf";
+    flower.appendChild(leafL);
+
+    const leafR = document.createElement("div");
+    leafR.className = "leaf right";
+    flower.appendChild(leafR);
+
+    for (let i = 0; i < 6; i++) {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        petal.style.transform =
+            `rotate(${i * 60}deg) translateY(-18px)`;
+        flower.appendChild(petal);
+    }
+
+    const center = document.createElement("div");
+    center.className = "center";
+    flower.appendChild(center);
+
+    bouquet.appendChild(flower);
+}
+
+function createSparkle() {
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random() * 400 + "px";
+    s.style.top = 250 + Math.random() * 120 + "px";
+    s.style.animationDelay = Math.random() * 3 + "s";
+    bouquet.appendChild(s);
+
+    setTimeout(() => s.remove(), 3000);
+}
+
+// Elegant bouquet structure
+const layout = [
+    [185, 110], [155, 150], [215, 150],
+    [125, 190], [185, 190], [245, 190],
+    [155, 230], [215, 230], [185, 270]
+];
+
+layout.forEach((p, i) => {
+    createFlower(p[0], p[1], i * 0.25, colors[i % colors.length]);
+});
+
+// Sparkles loop
+setInterval(createSparkle, 400);
+</script>
+
+</body>
+</html>
