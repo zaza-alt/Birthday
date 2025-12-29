@@ -21,7 +21,7 @@ body{
   color:white;
 }
 
-/* ⭐ STARS */
+/* STARS */
 .star{
   position:absolute;
   width:2px;height:2px;
@@ -31,7 +31,7 @@ body{
 }
 @keyframes twinkle{50%{opacity:1}}
 
-/* 🎉 MESSAGE */
+/* MESSAGE */
 .message{
   position:absolute;
   top:6%;
@@ -42,7 +42,7 @@ body{
   z-index:5;
 }
 
-/* 🎂 CAKE */
+/* CAKE */
 .cake{
   position:absolute;
   bottom:14vh;
@@ -70,33 +70,30 @@ body{
   background:linear-gradient(#fff,#ffe0ee);
 }
 
-/* 🕯️ CANDLES (18) */
 /* NUMBER CANDLES (18) */
 .candles{
   position:absolute;
-  top:-65px;
+  top:-70px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
   gap:18px;
 }
-
 .num-candle{
-  position:relative;
-  width:44px;
-  height:64px;
+  width:48px;
+  height:70px;
+  border-radius:10px;
   background:linear-gradient(#fff,#ffd1e6);
-  border-radius:8px;
-  box-shadow:0 8px 20px rgba(255,255,255,.4);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:48px;
   font-weight:900;
   color:#ff5fa2;
+  position:relative;
+  box-shadow:0 10px 25px rgba(255,255,255,.4);
 }
-
-.num-candle .flame{
+.flame{
   position:absolute;
   top:-18px;
   left:50%;
@@ -107,9 +104,20 @@ body{
   background:radial-gradient(circle,#fff,orange,red);
   animation:flicker .12s infinite alternate;
 }
+@keyframes flicker{to{transform:translateX(-50%) scale(1.2)}}
+.smoke{
+  position:absolute;
+  top:-20px;
+  left:50%;
+  width:10px;height:10px;
+  border-radius:50%;
+  background:#ccc;
+  opacity:.7;
+  animation:smoke 1.4s forwards;
+}
+@keyframes smoke{to{transform:translate(-50%,-40px);opacity:0}}
 
-
-/* ✨ SPARKLES */
+/* SPARKLES */
 .sparkle{
   position:absolute;
   width:4px;height:4px;
@@ -120,7 +128,7 @@ body{
 }
 @keyframes sparkle{to{transform:scale(1.8);opacity:0}}
 
-/* 🌸 BOUQUETS */
+/* BOUQUETS */
 .bouquet{
   position:absolute;
   bottom:16vh;
@@ -162,7 +170,7 @@ body{
   box-shadow:0 0 8px gold;
 }
 
-/* 🎆 FIREWORKS */
+/* FIREWORKS */
 .firework{
   position:absolute;
   width:6px;height:6px;
@@ -171,7 +179,7 @@ body{
 }
 @keyframes explode{to{transform:translate(var(--x),var(--y));opacity:0}}
 
-/* 🎈 BALLOONS */
+/* BALLOONS */
 .balloon{
   position:absolute;
   bottom:-80px;
@@ -183,6 +191,7 @@ body{
 @keyframes float{to{transform:translateY(-130vh)}}
 </style>
 </head>
+
 <body>
 
 <audio id="music" loop>
@@ -195,14 +204,18 @@ body{
 <div class="bouquet right" id="bouquetR"></div>
 
 <div class="cake" id="cake">
- <div class="candles" id="candles">
-  <div class="num-candle">1<div class="flame"></div></div>
-  <div class="num-candle">8<div class="flame"></div></div>
+  <div class="candles">
+    <div class="num-candle">1<div class="flame"></div></div>
+    <div class="num-candle">8<div class="flame"></div></div>
+  </div>
+  <div class="layer l4"></div>
+  <div class="layer l3"></div>
+  <div class="layer l2"></div>
+  <div class="layer l1"></div>
 </div>
 
-
 <script>
-/* MUSIC (MOBILE SAFE) */
+/* MUSIC */
 const music=document.getElementById('music');
 music.volume=.6;
 music.play().catch(()=>document.body.addEventListener('click',()=>music.play(),{once:true}));
@@ -271,7 +284,7 @@ setInterval(()=>{
   setTimeout(()=>b.remove(),15000);
 },1200);
 
-/* FIREWORKS CORNERS */
+/* FIREWORKS */
 function cornerFireworks(x,y){
   for(let i=0;i<28;i++){
     const f=document.createElement('div');
