@@ -71,41 +71,43 @@ body{
 }
 
 /* 🕯️ CANDLES (18) */
+/* NUMBER CANDLES (18) */
 .candles{
   position:absolute;
-  top:-55px;
+  top:-65px;
   left:50%;
   transform:translateX(-50%);
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:8px;
-  width:50vw;
+  display:flex;
+  gap:18px;
 }
-.candle{
-  width:8px;height:32px;
-  border-radius:3px;
-  background:repeating-linear-gradient(45deg,#fff 0 4px,#ff8fbf 4px 8px);
+
+.num-candle{
   position:relative;
+  width:44px;
+  height:64px;
+  background:linear-gradient(#fff,#ffd1e6);
+  border-radius:8px;
+  box-shadow:0 8px 20px rgba(255,255,255,.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  font-weight:900;
+  color:#ff5fa2;
 }
-.flame{
+
+.num-candle .flame{
   position:absolute;
-  top:-12px;left:50%;
+  top:-18px;
+  left:50%;
   transform:translateX(-50%);
-  width:8px;height:12px;
+  width:12px;
+  height:16px;
   border-radius:50%;
   background:radial-gradient(circle,#fff,orange,red);
   animation:flicker .12s infinite alternate;
 }
-@keyframes flicker{to{transform:translateX(-50%) scale(1.2)}}
-.smoke{
-  position:absolute;
-  top:-20px;left:50%;
-  width:10px;height:10px;
-  background:#ccc;border-radius:50%;
-  opacity:.7;
-  animation:smoke 1.4s forwards;
-}
-@keyframes smoke{to{transform:translate(-50%,-40px);opacity:0}}
+
 
 /* ✨ SPARKLES */
 .sparkle{
@@ -193,12 +195,11 @@ body{
 <div class="bouquet right" id="bouquetR"></div>
 
 <div class="cake" id="cake">
-  <div class="candles" id="candles"></div>
-  <div class="layer l4"></div>
-  <div class="layer l3"></div>
-  <div class="layer l2"></div>
-  <div class="layer l1"></div>
+ <div class="candles" id="candles">
+  <div class="num-candle">1<div class="flame"></div></div>
+  <div class="num-candle">8<div class="flame"></div></div>
 </div>
+
 
 <script>
 /* MUSIC (MOBILE SAFE) */
@@ -223,21 +224,6 @@ for(let i=0;i<20;i++){
   sp.style.top=60+Math.random()*8+'%';
   document.body.appendChild(sp);
 }
-
-/* CANDLES = 18 */
-const pattern=[
-1,1,1,0,1,1,
-0,1,0,0,1,0,
-1,1,1,0,1,1
-];
-const candles=document.getElementById('candles');
-pattern.forEach(v=>{
-  const c=document.createElement('div');
-  c.className='candle';
-  if(v)c.innerHTML='<div class="flame"></div>';
-  else c.style.visibility='hidden';
-  candles.appendChild(c);
-});
 
 /* BOUQUETS */
 function buildBouquet(el){
