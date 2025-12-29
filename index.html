@@ -2,179 +2,278 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>Happy Birthday Imaannnssss</title>
 
 <style>
 :root{
-  --pink:#ff5fa2; --rose:#ffb6d9; --gold:#ffd36e;
+  --pink:#ff5fa2;
+  --rose:#ffb6d9;
+  --gold:#ffd36e;
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
 body{
-  height:100vh; overflow:hidden; color:white;
+  height:100vh;
+  overflow:hidden;
   background:radial-gradient(circle at top,#1e1e40,#000);
   font-family:system-ui,Segoe UI;
+  color:white;
 }
 
-/* STARS */
-.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;
-animation:twinkle 3s infinite ease-in-out;opacity:.2}
+/* ⭐ STARS */
+.star{
+  position:absolute;
+  width:2px;height:2px;
+  background:#fff;border-radius:50%;
+  opacity:.3;
+  animation:twinkle 3s infinite;
+}
 @keyframes twinkle{50%{opacity:1}}
 
-/* COUNTDOWN */
-.countdown{
-  position:absolute;inset:0;display:grid;place-items:center;
-  font-size:clamp(4rem,10vw,7rem);font-weight:900;
-  background:#000a;z-index:10;
-  animation:fadeOut .8s forwards;animation-delay:3.2s
+/* 🎉 MESSAGE */
+.message{
+  position:absolute;
+  top:6%;
+  width:100%;
+  text-align:center;
+  font-size:clamp(1.6rem,5vw,2.4rem);
+  font-weight:700;
+  z-index:5;
 }
-@keyframes fadeOut{to{opacity:0;pointer-events:none}}
 
-/* HANDWRITING */
-.message{position:absolute;top:10%;width:100%;text-align:center}
-svg path{
-  fill:none;stroke:white;stroke-width:3;
-  stroke-dasharray:2000;stroke-dashoffset:2000;
-  animation:draw 4s forwards ease;
-  animation-delay:4.8s;
-  filter:drop-shadow(0 0 12px var(--rose))
+/* 🎂 CAKE */
+.cake{
+  position:absolute;
+  bottom:14vh;
+  left:50%;
+  transform:translateX(-50%) scale(0);
+  animation:cakeIn 2.2s ease-out forwards;
+  animation-delay:2.5s;
 }
-@keyframes draw{to{stroke-dashoffset:0}}
-
-/* BOUQUET */
-.bouquet{position:absolute;bottom:260px;left:50%;transform:translateX(-50%);
-display:flex;gap:18px}
-.flower{width:48px;height:48px;position:relative;transform:scale(0);
-animation:bloom 1.4s forwards cubic-bezier(.17,.67,.4,1.4)}
-@keyframes bloom{to{transform:scale(1)}}
-.petal{position:absolute;width:24px;height:24px;border-radius:50%;
-background:radial-gradient(circle,#fff,var(--pink))}
-.center{position:absolute;inset:17px;width:14px;height:14px;border-radius:50%;
-background:var(--gold);box-shadow:0 0 8px gold}
-
-/* CAKE */
-.cake{position:absolute;bottom:90px;left:50%;
-transform:translateX(-50%) scale(0);
-animation:cakeIn 2s forwards ease-out;animation-delay:3.4s}
 @keyframes cakeIn{to{transform:translateX(-50%) scale(1)}}
-.layer{width:300px;height:80px;border-radius:14px;
-background:linear-gradient(#ff9ecb,#ff5fa2);
-margin:0 auto;box-shadow:0 12px 30px rgba(255,95,162,.4)}
-.layer.mid{width:260px;margin-top:-20px}
-.layer.top{width:220px;margin-top:-20px;background:linear-gradient(#fff,#ffd6e8)}
 
-/* 18 CANDLES */
-.candles{position:absolute;top:-45px;left:50%;transform:translateX(-50%);
-display:flex;gap:8px;flex-wrap:wrap;width:240px;justify-content:center}
-.candle{width:10px;height:38px;border-radius:3px;position:relative;
-background:repeating-linear-gradient(45deg,#fff 0 4px,#ff8fbf 4px 8px)}
-.flame{position:absolute;top:-15px;left:50%;
-transform:translateX(-50%);
-width:10px;height:14px;border-radius:50%;
-background:radial-gradient(circle,#fff,orange,red);
-animation:flicker .12s infinite alternate}
+.layer{
+  height:10vh;
+  max-height:80px;
+  border-radius:20px;
+  background:linear-gradient(#ffb6d9,#ff5fa2);
+  margin:0 auto;
+  box-shadow:0 20px 40px rgba(255,95,162,.45);
+}
+.l1{width:78vw}
+.l2{width:68vw;margin-top:-18px}
+.l3{width:58vw;margin-top:-18px}
+.l4{
+  width:48vw;
+  margin-top:-18px;
+  background:linear-gradient(#fff,#ffe0ee);
+}
+
+/* 🕯️ CANDLES (18) */
+.candles{
+  position:absolute;
+  top:-55px;
+  left:50%;
+  transform:translateX(-50%);
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:8px;
+  width:50vw;
+}
+.candle{
+  width:8px;height:32px;
+  border-radius:3px;
+  background:repeating-linear-gradient(45deg,#fff 0 4px,#ff8fbf 4px 8px);
+  position:relative;
+}
+.flame{
+  position:absolute;
+  top:-12px;left:50%;
+  transform:translateX(-50%);
+  width:8px;height:12px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff,orange,red);
+  animation:flicker .12s infinite alternate;
+}
 @keyframes flicker{to{transform:translateX(-50%) scale(1.2)}}
+.smoke{
+  position:absolute;
+  top:-20px;left:50%;
+  width:10px;height:10px;
+  background:#ccc;border-radius:50%;
+  opacity:.7;
+  animation:smoke 1.4s forwards;
+}
+@keyframes smoke{to{transform:translate(-50%,-40px);opacity:0}}
 
-/* BALLOONS */
-.balloon{position:absolute;bottom:-80px;width:36px;height:46px;
-border-radius:50%;background:linear-gradient(#fff8,var(--rose));
-animation:float linear infinite}
-@keyframes float{
-  to{transform:translateY(-130vh) translateX(40px)}
+/* ✨ SPARKLES */
+.sparkle{
+  position:absolute;
+  width:4px;height:4px;
+  border-radius:50%;
+  background:white;
+  opacity:.8;
+  animation:sparkle 1.5s infinite alternate;
+}
+@keyframes sparkle{to{transform:scale(1.8);opacity:0}}
+
+/* 🌸 BOUQUETS */
+.bouquet{
+  position:absolute;
+  bottom:16vh;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.bouquet.left{left:4vw}
+.bouquet.right{right:4vw}
+
+.stem{
+  width:4px;height:0;
+  background:#4caf50;
+  margin:auto;
+  animation:growStem 1s forwards;
+}
+@keyframes growStem{to{height:40px}}
+
+.flower{
+  width:44px;height:44px;
+  position:relative;
+  transform:scale(0);
+  opacity:0;
+  animation:bloom 1.3s forwards ease-out;
+}
+@keyframes bloom{to{transform:scale(1);opacity:1}}
+.petal{
+  position:absolute;
+  width:22px;height:22px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff,var(--c));
+}
+.center{
+  position:absolute;
+  inset:15px;
+  width:14px;height:14px;
+  border-radius:50%;
+  background:gold;
+  box-shadow:0 0 8px gold;
 }
 
-/* FIREWORKS */
-.firework{position:absolute;width:6px;height:6px;border-radius:50%;
-background:gold;animation:explode .9s forwards}
-@keyframes explode{
-  to{transform:translate(var(--x),var(--y));opacity:0}
+/* 🎆 FIREWORKS */
+.firework{
+  position:absolute;
+  width:6px;height:6px;
+  border-radius:50%;
+  animation:explode .9s forwards;
 }
+@keyframes explode{to{transform:translate(var(--x),var(--y));opacity:0}}
 
-/* SPARKLES */
-.sparkle{position:absolute;width:6px;height:6px;border-radius:50%;
-background:gold;pointer-events:none;animation:sparkle 1s forwards}
-@keyframes sparkle{to{transform:translateY(-40px);opacity:0}}
+/* 🎈 BALLOONS */
+.balloon{
+  position:absolute;
+  bottom:-80px;
+  width:30px;height:40px;
+  border-radius:50%;
+  background:linear-gradient(#fff8,var(--rose));
+  animation:float linear infinite;
+}
+@keyframes float{to{transform:translateY(-130vh)}}
 </style>
 </head>
 <body>
 
 <audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c4d35a8e1.mp3">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c4d35a8e1.mp3">
 </audio>
 
-<div class="countdown" id="count">3</div>
+<div class="message">🎉 Happy Birthday 18th Imaannnssss 🎉</div>
 
-<div class="message">
-<svg viewBox="0 0 1200 200">
-<path d="M80 120
-Q150 20 230 120
-T380 120
-Q450 20 530 120
-T700 120
-Q820 20 920 120
-T1100 120" />
-<text x="600" y="170" text-anchor="middle"
-font-size="64" fill="white">
-Happy Birthday 18th Imaannnssss
-</text>
-</svg>
-</div>
+<div class="bouquet left" id="bouquetL"></div>
+<div class="bouquet right" id="bouquetR"></div>
 
-<div class="bouquet" id="bouquet"></div>
-
-<div class="cake">
+<div class="cake" id="cake">
   <div class="candles" id="candles"></div>
-  <div class="layer top"></div>
-  <div class="layer mid"></div>
-  <div class="layer"></div>
+  <div class="layer l4"></div>
+  <div class="layer l3"></div>
+  <div class="layer l2"></div>
+  <div class="layer l1"></div>
 </div>
 
 <script>
+/* MUSIC (MOBILE SAFE) */
+const music=document.getElementById('music');
+music.volume=.6;
+music.play().catch(()=>document.body.addEventListener('click',()=>music.play(),{once:true}));
+
 /* STARS */
-for(let i=0;i<160;i++){
+for(let i=0;i<120;i++){
   const s=document.createElement('div');
   s.className='star';
   s.style.left=Math.random()*100+'vw';
   s.style.top=Math.random()*100+'vh';
-  s.style.animationDelay=Math.random()*3+'s';
   document.body.appendChild(s);
 }
 
-/* COUNTDOWN */
-let n=3,c=document.getElementById('count');
-const t=setInterval(()=>{c.textContent=--n;if(!n)clearInterval(t)},1000);
-
-/* MUSIC */
-const m=document.getElementById('music');
-m.volume=.6;
-m.play().catch(()=>document.addEventListener('click',()=>m.play(),{once:true}));
-
-/* FLOWERS */
-const bouquet=document.getElementById('bouquet');
-for(let i=0;i<7;i++){
-  const f=document.createElement('div');
-  f.className='flower';
-  f.style.animationDelay=i*.4+'s';
-  for(let p=0;p<5;p++){
-    const pet=document.createElement('div');
-    pet.className='petal';
-    pet.style.transform=`rotate(${p*72}deg) translate(12px)`;
-    f.appendChild(pet);
-  }
-  const c=document.createElement('div');
-  c.className='center';
-  f.appendChild(c);
-  bouquet.appendChild(f);
+/* SPARKLES */
+for(let i=0;i<20;i++){
+  const sp=document.createElement('div');
+  sp.className='sparkle';
+  sp.style.left=45+Math.random()*10+'%';
+  sp.style.top=60+Math.random()*8+'%';
+  document.body.appendChild(sp);
 }
 
-/* 18 CANDLES */
+/* CANDLES = 18 */
+const pattern=[
+1,1,1,0,1,1,
+0,1,0,0,1,0,
+1,1,1,0,1,1
+];
 const candles=document.getElementById('candles');
-for(let i=0;i<18;i++){
+pattern.forEach(v=>{
   const c=document.createElement('div');
   c.className='candle';
-  c.innerHTML='<div class="flame"></div>';
+  if(v)c.innerHTML='<div class="flame"></div>';
+  else c.style.visibility='hidden';
   candles.appendChild(c);
+});
+
+/* BOUQUETS */
+function buildBouquet(el){
+  const colors=['#ff5fa2','#9b5cff','#4fc3f7','#ffd36e','#ff8a65'];
+  for(let i=0;i<7;i++){
+    const stem=document.createElement('div');
+    stem.className='stem';
+    stem.style.animationDelay=i*.25+'s';
+    el.appendChild(stem);
+
+    const f=document.createElement('div');
+    f.className='flower';
+    f.style.animationDelay=1+i*.25+'s';
+    f.style.setProperty('--c',colors[i%colors.length]);
+    for(let p=0;p<5;p++){
+      const pet=document.createElement('div');
+      pet.className='petal';
+      pet.style.transform=`rotate(${p*72}deg) translate(12px)`;
+      f.appendChild(pet);
+    }
+    f.appendChild(Object.assign(document.createElement('div'),{className:'center'}));
+    el.appendChild(f);
+  }
 }
+buildBouquet(bouquetL);
+buildBouquet(bouquetR);
+
+/* BLOW CANDLES */
+document.getElementById('cake').addEventListener('click',()=>{
+  document.querySelectorAll('.flame').forEach(f=>{
+    const s=document.createElement('div');
+    s.className='smoke';
+    f.parentElement.appendChild(s);
+    f.remove();
+  });
+});
 
 /* BALLOONS */
 setInterval(()=>{
@@ -184,33 +283,26 @@ setInterval(()=>{
   b.style.animationDuration=8+Math.random()*6+'s';
   document.body.appendChild(b);
   setTimeout(()=>b.remove(),15000);
-},900);
+},1200);
 
-/* FIREWORKS */
-setTimeout(()=>{
-  for(let i=0;i<140;i++){
+/* FIREWORKS CORNERS */
+function cornerFireworks(x,y){
+  for(let i=0;i<28;i++){
     const f=document.createElement('div');
     f.className='firework';
-    f.style.left='50vw';
-    f.style.top='40vh';
-    f.style.setProperty('--x',(Math.random()*500-250)+'px');
-    f.style.setProperty('--y',(Math.random()*-350)+'px');
+    f.style.left=x;
+    f.style.top=y;
+    f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+    f.style.setProperty('--x',(Math.random()*160-80)+'px');
+    f.style.setProperty('--y',(Math.random()*-160)+'px');
     document.body.appendChild(f);
     setTimeout(()=>f.remove(),900);
   }
-},6500);
-
-/* SPARKLES */
-document.addEventListener('click',e=>{
-  for(let i=0;i<10;i++){
-    const s=document.createElement('div');
-    s.className='sparkle';
-    s.style.left=e.clientX+(Math.random()*20-10)+'px';
-    s.style.top=e.clientY+(Math.random()*20-10)+'px';
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),1000);
-  }
-});
+}
+setInterval(()=>{
+  cornerFireworks('6vw','6vh');
+  cornerFireworks('94vw','6vh');
+},2000);
 </script>
 </body>
 </html>
